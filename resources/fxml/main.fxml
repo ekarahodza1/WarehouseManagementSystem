@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" >
+    <center>
+        <TableView fx:id="tableViewStorage" prefHeight="400.0" prefWidth="538.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="coId" prefWidth="52.0" text="ID" />
+                <TableColumn fx:id="colName" prefWidth="87.0" text="Name" />
+                <TableColumn fx:id="colType" prefWidth="106.0" text="Type" />
+                <TableColumn fx:id="colAmount" prefWidth="88.0" text="Amount" />
+                <TableColumn fx:id="colPrice" minWidth="4.0" prefWidth="83.0" text="Unit price" />
+                <TableColumn fx:id="colPriceAll" prefWidth="82.0" text="Price" />
+                <TableColumn fx:id="colStorage" prefWidth="106.0" text="Warehouse" />
+                <TableColumn fx:id="colDate" prefWidth="97.0" text="Date added" />
+            </columns>
+        </TableView>
+    </center>
+    <right>
+        <VBox prefHeight="500.0" prefWidth="199.0" spacing="5.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="btnAddProduct" mnemonicParsing="false" prefWidth="Infinity" text="Add product" />
+                <Button fx:id="btnAddWarehouse" mnemonicParsing="false" prefWidth="Infinity" text="Add warehouse" />
+                <Button fx:id="btnUpdateProduct" mnemonicParsing="false" prefWidth="Infinity" text="Update product" />
+                <Button fx:id="btnDeleteProduct" mnemonicParsing="false" prefWidth="Infinity" text="Delete product" />
+                <Button fx:id="btnReport" mnemonicParsing="false" prefWidth="Infinity" text="Monthly report" />
+                <Button fx:id="btnReportFile" mnemonicParsing="false" prefWidth="Infinity" text="File monthly report" />
+                <VBox prefHeight="100.0" prefWidth="172.0">
+               <children>
+                   <Label text="Sort by" />
+                   <RadioButton mnemonicParsing="false" text="Unit price" />
+                   <RadioButton mnemonicParsing="false" text="Price" />
+                   <RadioButton mnemonicParsing="false" text="Date" />
+
+               </children></VBox>
+
+                <VBox prefHeight="100.0" prefWidth="172.0">
+                    <children>
+                        <Label text="Filter by" />
+                  <ChoiceBox fx:id="cboxType" prefWidth="150.0" />
+                   <ChoiceBox fx:id="cboxWarehouse" prefWidth="150.0" />
+                   <ChoiceBox fx:id="cboxDate" prefWidth="150.0" />
+                  <Slider fx:id="sliderPrice" prefHeight="30.0" prefWidth="188.0" />
+                        
+
+
+                    </children></VBox>
+                
+                <Button fx:id="btnExit" mnemonicParsing="false" prefWidth="Infinity" text="Exit" />
+
+
+            </children>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+        </VBox>
+    </right>
+</BorderPane>
