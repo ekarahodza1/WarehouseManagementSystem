@@ -1,8 +1,8 @@
-package sample;
+package sample.data;
 
 import java.util.Date;
 
-public class ExpirableProduct extends Product{
+public class ExpirableProduct extends Product {
     private Date expirationDate;
 
     public ExpirableProduct(int id, String name, Type type, int amount, double unitPrice, double price, Warehouse warehouse,

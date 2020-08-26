@@ -1,4 +1,4 @@
-package sample;
+package sample.data;
 
 public class Warehouse {
     private int id;
