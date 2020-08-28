@@ -1,4 +1,4 @@
-package sample.data;
+package sample.dto;
 
 public class Warehouse {
     private int id;
@@ -8,6 +8,8 @@ public class Warehouse {
         this.id = id;
         this.name = name;
     }
+
+    public Warehouse() {}
 
     public int getId() {
         return id;

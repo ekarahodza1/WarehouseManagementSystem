@@ -1,4 +1,4 @@
-package sample.data;
+package sample.dto;
 
 public enum Type {
     CLOTHES(1),

@@ -1,4 +1,4 @@
-package sample.data;
+package sample.dto;
 
 import java.util.Date;
 
@@ -10,6 +10,8 @@ public class ExpirableProduct extends Product {
         super(id, name, type, amount, unitPrice, price, warehouse, dateAdded);
         this.expirationDate = expirationDate;
     }
+
+    public ExpirableProduct() {}
 
     public Date getExpirationDate() {
         return expirationDate;

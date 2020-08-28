@@ -1,4 +1,4 @@
-package sample.data;
+package sample.models;
 
 public class UserModel {
 }

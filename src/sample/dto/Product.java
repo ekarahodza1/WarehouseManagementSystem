@@ -1,4 +1,4 @@
-package sample.data;
+package sample.dto;
 
 import java.util.Date;
 
@@ -22,6 +22,8 @@ public class Product {
         this.warehouse = warehouse;
         this.dateAdded = dateAdded;
     }
+
+    public Product() {}
 
     public int getId() {
         return id;
