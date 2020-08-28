@@ -9,7 +9,7 @@ public class WarehouseModel {
     private static WarehouseModel instance;
     private Connection conn;
 
-    private PreparedStatement product;
+    private PreparedStatement product, getWarehouse, addWarehouse, getID;;
 
     public static WarehouseModel getInstance() {
         if (instance == null) instance = new WarehouseModel();
@@ -32,6 +32,16 @@ public class WarehouseModel {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
+
+        try {
+
+            getWarehouse = conn.prepareStatement("SELECT * FROM warehouse WHERE id=?");
+            addWarehouse = conn.prepareStatement("INSERT INTO warehouse VALUES(?,?)");
+            getID = conn.prepareStatement("SELECT MAX(id)+1 FROM warehouse");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

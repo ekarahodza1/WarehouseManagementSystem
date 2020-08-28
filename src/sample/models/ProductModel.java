@@ -9,7 +9,7 @@ public class ProductModel {
     private static ProductModel instance;
     private Connection conn;
 
-    private PreparedStatement product;
+    private PreparedStatement product, getProducts, getProduct, updateProduct, deleteProduct, addProduct, getID;
 
     public static ProductModel getInstance() {
         if (instance == null) instance = new ProductModel();
@@ -33,6 +33,21 @@ public class ProductModel {
                 e.printStackTrace();
             }
         }
+
+        try {
+
+            getProducts = conn.prepareStatement("SELECT * FROM product");
+            getProduct = conn.prepareStatement("SELECT * FROM product WHERE id=?");
+            updateProduct = conn.prepareStatement("UPDATE product SET name=?, type=?, amount=?, unitPrice=?, " +
+                    "price=?, warehouse=?, dateAdded=?, expirationDate=? WHERE id=?");
+            deleteProduct = conn.prepareStatement("DELETE FROM product WHERE id=?");
+            addProduct = conn.prepareStatement("INSERT INTO product VALUES(?,?,?,?,?,?,?,?,?)");
+            getID = conn.prepareStatement("SELECT MAX(id)+1 FROM product");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void regenerateDatabase() {
