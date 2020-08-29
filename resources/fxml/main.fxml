@@ -8,7 +8,7 @@
     <center>
         <TableView fx:id="tableViewStorage" prefHeight="400.0" prefWidth="538.0" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn fx:id="coId" prefWidth="52.0" text="ID" />
+                <TableColumn fx:id="colId" prefWidth="52.0" text="ID" />
                 <TableColumn fx:id="colName" prefWidth="76.0" text="Name" />
                 <TableColumn fx:id="colType" prefWidth="96.0" text="Type" />
                 <TableColumn fx:id="colAmount" prefWidth="81.0" text="Amount" />
