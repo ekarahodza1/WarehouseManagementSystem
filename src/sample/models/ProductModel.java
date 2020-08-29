@@ -157,7 +157,6 @@ public class ProductModel {
             e.printStackTrace();
             return null;
         }
-
     }
 
     private Product getProductFromResultset(ResultSet rs) {

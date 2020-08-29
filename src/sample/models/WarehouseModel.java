@@ -1,5 +1,8 @@
 package sample.models;
 
+import sample.dto.Product;
+import sample.dto.Warehouse;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
@@ -65,6 +68,38 @@ public class WarehouseModel {
             in.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void addWarehouse(Warehouse warehouse){
+        try {
+            ResultSet rs = getID.executeQuery();
+            int id = 1;
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+
+            addWarehouse.setInt(1, id);
+            addWarehouse.setString(2, warehouse.getName());
+
+            addWarehouse.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public Warehouse getWarehouse(int id){
+        try {
+            getWarehouse.setInt(1, id);
+            ResultSet rs = getWarehouse.executeQuery();
+            if (!rs.next()) return null;
+            Warehouse warehouse = new Warehouse(rs.getInt(1), rs.getString(2));
+            return warehouse;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }
