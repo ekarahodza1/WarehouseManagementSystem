@@ -11,8 +11,9 @@ public class Product {
     private double price;
     private Warehouse warehouse;
     private Date dateAdded;
+    private Date expirationDate;
 
-    public Product(int id, String name, Type type, int amount, double unitPrice, double price, Warehouse warehouse, Date dateAdded) {
+    public Product(int id, String name, Type type, int amount, double unitPrice, double price, Warehouse warehouse, Date dateAdded, Date expirationDate) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -21,6 +22,20 @@ public class Product {
         this.price = price;
         this.warehouse = warehouse;
         this.dateAdded = dateAdded;
+        this.expirationDate = expirationDate;
+    }
+
+    public Product(int id, String name, int type, int amount, double unitPrice, double price, int warehouse, Date dateAdded, Date expirationDate) {
+        this.id = id;
+        this.name = name;
+        Type t = null;
+        this.type = t.getType(type);
+        this.amount = amount;
+        this.unitPrice = unitPrice;
+        this.price = price;
+        this.warehouse.setId(warehouse);
+        this.dateAdded = dateAdded;
+        this.expirationDate = expirationDate;
     }
 
     public Product() {}
@@ -44,6 +59,8 @@ public class Product {
     public Type getType() {
         return type;
     }
+
+    public int getIntType() {return type.getValue(); }
 
     public void setType(Type type) {
         this.type = type;
@@ -87,5 +104,23 @@ public class Product {
 
     public void setDateAdded(Date dateAdded) {
         this.dateAdded = dateAdded;
+    }
+
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public String getDateAddedString() {
+        if (dateAdded == null) return null;
+        return dateAdded.toString();
+    }
+
+    public String getExpirationDateString() {
+        if (expirationDate == null) return null;
+        return expirationDate.toString();
     }
 }

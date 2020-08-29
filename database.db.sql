@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS "product" (
 	"type"	INTEGER,
 	"amount"	INTEGER,
 	"unitPrice"	REAL,
-	"price"	NUMERIC,
+	"price"	REAL,
 	"warehouse"	INTEGER,
 	"dateAdded"	TEXT,
 	"expirationDate"	TEXT,

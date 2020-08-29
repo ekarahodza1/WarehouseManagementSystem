@@ -1,8 +1,11 @@
 package sample.models;
 
+import sample.dto.Product;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ProductModel {
@@ -74,6 +77,121 @@ public class ProductModel {
     }
 
 
+    public void addProduct(Product product){
+        try {
+            ResultSet rs = getID.executeQuery();
+            int id = 1;
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+
+            addProduct.setInt(1, id);
+            addProduct.setString(2, product.getName());
+            addProduct.setInt(3, product.getIntType());
+            addProduct.setInt(4, product.getAmount());
+            addProduct.setDouble(5, product.getUnitPrice());
+            addProduct.setDouble(6, product.getPrice());
+            addProduct.setInt(7, product.getWarehouse().getId());
+            addProduct.setString(8, product.getDateAddedString());
+            addProduct.setString(9, product.getExpirationDateString());
+
+            addProduct.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void updateProduct(Product product) {
+        try {
+            ResultSet rs = getID.executeQuery();
+            int id = 1;
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+
+            updateProduct.setInt(1, id);
+            updateProduct.setString(2, product.getName());
+            updateProduct.setInt(3, product.getIntType());
+            updateProduct.setInt(4, product.getAmount());
+            updateProduct.setDouble(5, product.getUnitPrice());
+            updateProduct.setDouble(6, product.getPrice());
+            updateProduct.setInt(7, product.getWarehouse().getId());
+            updateProduct.setString(8, product.getDateAddedString());
+            updateProduct.setString(9, product.getExpirationDateString());
+
+            updateProduct.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public void deleteProduct(Product product) {
+        try {
+            ResultSet rs = getID.executeQuery();
+            int id = 1;
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+
+            deleteProduct.setInt(1, id);
+            deleteProduct.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public Product getProduct(int id){
+        try {
+            getProduct.setInt(1, id);
+            ResultSet rs = getProduct.executeQuery();
+            if (!rs.next()) return null;
+            return getProductFromResultset(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    private Product getProductFromResultset(ResultSet rs) {
+        try {
+            Date expirationDate = null;
+            if (rs.getString(9) != null) {
+                expirationDate = rs.getDate(9);
+            }
+
+            Product p = new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),
+                    rs.getDouble(5), rs.getDouble(6), rs.getInt(7), rs.getDate(8), expirationDate);
+
+            return p;
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<Product> getProducts() {
+        ArrayList<Product> result = new ArrayList();
+        try {
+            ResultSet rs = getProducts.executeQuery();
+            while (rs.next()) {
+
+                Product product = getProductFromResultset(rs);
+                result.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 
 
 }
