@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,6 +20,7 @@ import sample.models.ProductModel;
 import sample.models.WarehouseModel;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -108,6 +111,51 @@ public class MainController {
             e.printStackTrace();
         }
 
+    }
+
+    public void actionUpdateProduct(ActionEvent actionEvent) {
+        Product product = tableViewStorage.getSelectionModel().getSelectedItem();
+        if (product == null) return;
+
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/product.fxml"));
+            ProductController productController = new ProductController();      //imaju dva argumenta
+            loader.setController(productController);
+            root = loader.load();
+            stage.setTitle("Product");
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.setResizable(true);
+            stage.show();
+
+            stage.setOnHiding( event -> {
+                Product newProduct = productController.getProduct();
+                if (newProduct != null) {
+                    model.updateProduct(product);
+                    listProduct.setAll(model.getProducts());
+                }
+            } );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void actionDeleteProduct(ActionEvent actionEvent) {
+        Product product = tableViewStorage.getSelectionModel().getSelectedItem();
+        if (product == null) return;
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete confirmation");
+        alert.setHeaderText("Deleting product " + product.getName());
+        alert.setContentText("Are you sure you want to delete product " + product.getName() +"?");
+        alert.setResizable(true);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            model.deleteProduct(product);
+            listProduct.setAll(model.getProducts());
+        }
     }
 
 }

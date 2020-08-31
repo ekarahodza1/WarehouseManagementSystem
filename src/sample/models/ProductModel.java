@@ -134,13 +134,7 @@ public class ProductModel {
 
     public void deleteProduct(Product product) {
         try {
-            ResultSet rs = getID.executeQuery();
-            int id = 1;
-            if (rs.next()) {
-                id = rs.getInt(1);
-            }
-
-            deleteProduct.setInt(1, id);
+            deleteProduct.setInt(1, product.getId());
             deleteProduct.executeUpdate();
 
         } catch (SQLException e) {
