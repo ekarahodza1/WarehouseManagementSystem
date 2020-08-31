@@ -32,23 +32,24 @@
 
         <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="9">
             <buttons>
-                <Button fx:id="btnOk" mnemonicParsing="false" text="Ok" />
-                <Button fx:id="btnCancel" mnemonicParsing="false" text="Cancel" />
+                <Button fx:id="btnOk" onAction="#clickOk" mnemonicParsing="false" text="Ok" />
+                <Button fx:id="btnCancel" onAction="#clickCancel" mnemonicParsing="false" text="Cancel" />
             </buttons>
         </ButtonBar>
-      <Label text="Unit amount:" GridPane.rowIndex="3" />
+      <Label text="Amount:" GridPane.rowIndex="3" />
       <Label text="Unit price:" GridPane.rowIndex="4" />
       <Label text="Price:" GridPane.rowIndex="5" />
       <Label text="Warehouse:" GridPane.rowIndex="6" />
       <Label text="Date added:" GridPane.rowIndex="7" />
-        <Label text="Expiration date:" GridPane.rowIndex="8" />
-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <ChoiceBox prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Label text="Expiration date:" GridPane.rowIndex="8" />
 
-      <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <TextField fx:id="fieldAmount" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <TextField fx:id="fieldUnitPrice" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <TextField fx:id="fieldPrice" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <ChoiceBox fx:id="choiceWarehouse" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <DatePicker fx:id="dateAdded" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+      <DatePicker fx:id="expirationDate" GridPane.columnIndex="1" GridPane.rowIndex="8" />
     </children>
     <opaqueInsets>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

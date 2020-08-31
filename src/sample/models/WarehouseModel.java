@@ -6,6 +6,7 @@ import sample.dto.Warehouse;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class WarehouseModel {
@@ -101,5 +102,9 @@ public class WarehouseModel {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public ArrayList<Warehouse> getAll() {
+        return null;
     }
 }

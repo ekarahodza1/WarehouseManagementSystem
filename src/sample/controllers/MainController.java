@@ -66,7 +66,7 @@ public class MainController {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/product.fxml"));
-            ProductController productController = new ProductController(); //bila dva argumenta u konstruktoru
+            ProductController productController = new ProductController(null, warehouseModel.getAll());
             loader.setController(productController);
             root = loader.load();
             stage.setTitle("New product");
@@ -121,7 +121,7 @@ public class MainController {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/product.fxml"));
-            ProductController productController = new ProductController();      //imaju dva argumenta
+            ProductController productController = new ProductController(product, warehouseModel.getAll());
             loader.setController(productController);
             root = loader.load();
             stage.setTitle("Product");
