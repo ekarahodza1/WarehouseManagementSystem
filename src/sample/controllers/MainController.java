@@ -1,11 +1,25 @@
 package sample.controllers;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import sample.dto.Product;
+import sample.dto.Warehouse;
 import sample.models.ProductModel;
+import sample.models.WarehouseModel;
+
+import java.io.IOException;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class MainController {
 
@@ -21,12 +35,79 @@ public class MainController {
     public TableColumn colDateExp;
 
     private ProductModel model;
+    private WarehouseModel warehouseModel;
     private ObservableList<Product> listProduct;
 
     public MainController() {
         model = ProductModel.getInstance();
+        warehouseModel = WarehouseModel.getInstance();
         listProduct = FXCollections.observableArrayList(model.getProducts());
     }
 
+    @FXML
+    public void initialize() {
+        tableViewStorage.setItems(listProduct);
+        colId.setCellValueFactory(new PropertyValueFactory("id"));
+        colName.setCellValueFactory(new PropertyValueFactory("name"));
+        colType.setCellValueFactory(new PropertyValueFactory("type"));
+        colAmount.setCellValueFactory(new PropertyValueFactory("amount"));
+        colPrice.setCellValueFactory(new PropertyValueFactory("unitPrice"));
+        colPriceAll.setCellValueFactory(new PropertyValueFactory("price"));
+        colStorage.setCellValueFactory(new PropertyValueFactory("warehouse"));
+        colDate.setCellValueFactory(new PropertyValueFactory("dateAdded"));
+        colDateExp.setCellValueFactory(new PropertyValueFactory("expirationDate"));
+    }
+
+    public void actionAddProduct(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/product.fxml"));
+            ProductController productController = new ProductController(); //bila dva argumenta u konstruktoru
+            loader.setController(productController);
+            root = loader.load();
+            stage.setTitle("New product");
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.setResizable(false);
+            stage.show();
+
+            stage.setOnHiding( event -> {
+                Product product = productController.getProduct();
+                if (product != null) {
+                    model.addProduct(product);
+                    listProduct.setAll(model.getProducts());
+                }
+            } );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void actionAddWarehouse(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/warehouse.fxml"));
+            WarehouseController warehouseController = new WarehouseController(); //bila dva argumenta u konstruktoru
+            loader.setController(warehouseController);
+            root = loader.load();
+            stage.setTitle("New warehouse");
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.setResizable(false);
+            stage.show();
+
+            stage.setOnHiding( event -> {
+                Warehouse warehouse = warehouseController.getWarehouse();
+                if (warehouse != null) {
+                    warehouseModel.addWarehouse(warehouse);
+                    //listProduct.setAll(model.getProducts());
+                }
+            } );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }

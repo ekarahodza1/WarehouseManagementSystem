@@ -22,9 +22,11 @@ public class ProductModel {
     private ProductModel() {
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:database.db");
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
 
         try {
             product = conn.prepareStatement("SELECT * FROM product, warehouse WHERE product.warehouse = warehouse.id");
@@ -163,11 +165,16 @@ public class ProductModel {
         try {
             Date expirationDate = null;
             if (rs.getString(9) != null) {
-                expirationDate = rs.getDate(9);
+                expirationDate = Date.valueOf(rs.getString(9));
+            }
+
+            Date date = null;
+            if (rs.getString(8) != null) {
+                date = Date.valueOf(rs.getString(8));
             }
 
             Product p = new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),
-                    rs.getDouble(5), rs.getDouble(6), rs.getInt(7), rs.getDate(8), expirationDate);
+                    rs.getDouble(5), rs.getDouble(6), rs.getInt(7), date, expirationDate);
 
             return p;
         }

@@ -28,12 +28,13 @@ public class Product {
     public Product(int id, String name, int type, int amount, double unitPrice, double price, int warehouse, Date dateAdded, Date expirationDate) {
         this.id = id;
         this.name = name;
-        Type t = null;
+        Type t = Type.CLOTHES;
         this.type = t.getType(type);
         this.amount = amount;
         this.unitPrice = unitPrice;
         this.price = price;
-        this.warehouse.setId(warehouse);
+        Warehouse w = new Warehouse(warehouse, null);
+        this.warehouse = w;
         this.dateAdded = dateAdded;
         this.expirationDate = expirationDate;
     }

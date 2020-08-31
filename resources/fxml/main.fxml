@@ -23,7 +23,7 @@
     <right>
         <VBox prefHeight="500.0" prefWidth="148.0" spacing="5.0" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="btnAddProduct" mnemonicParsing="false" prefWidth="Infinity" text="Add product" />
+                <Button fx:id="btnAddProduct" mnemonicParsing="false" prefWidth="Infinity" onAction="#actionAddProduct" text="Add product" />
                 <Button fx:id="btnAddWarehouse" mnemonicParsing="false" prefWidth="Infinity" text="Add warehouse" />
                 <Button fx:id="btnUpdateProduct" mnemonicParsing="false" prefWidth="Infinity" text="Update product" />
                 <Button fx:id="btnDeleteProduct" mnemonicParsing="false" prefWidth="Infinity" text="Delete product" />
