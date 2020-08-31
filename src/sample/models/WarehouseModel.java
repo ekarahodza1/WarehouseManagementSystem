@@ -13,7 +13,7 @@ public class WarehouseModel {
     private static WarehouseModel instance;
     private Connection conn;
 
-    private PreparedStatement product, getWarehouse, addWarehouse, getID;;
+    private PreparedStatement product, getWarehouse, addWarehouse, getID, getAll;
 
     public static WarehouseModel getInstance() {
         if (instance == null) instance = new WarehouseModel();
@@ -42,6 +42,7 @@ public class WarehouseModel {
 
             getWarehouse = conn.prepareStatement("SELECT * FROM warehouse WHERE id=?");
             addWarehouse = conn.prepareStatement("INSERT INTO warehouse VALUES(?,?)");
+            getAll = conn.prepareStatement("SELECT * FROM warehouse");
             getID = conn.prepareStatement("SELECT MAX(id)+1 FROM warehouse");
 
         } catch (SQLException e) {
@@ -105,6 +106,16 @@ public class WarehouseModel {
     }
 
     public ArrayList<Warehouse> getAll() {
-        return null;
+        ArrayList<Warehouse> result = new ArrayList();
+        try {
+            ResultSet rs = getAll.executeQuery();
+            while (rs.next()) {
+                Warehouse warehouse = new Warehouse(rs.getInt(1), rs.getString(2));
+                result.add(warehouse);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

@@ -114,6 +114,7 @@ public class MainController {
     }
 
     public void actionUpdateProduct(ActionEvent actionEvent) {
+        System.out.println("uslo");
         Product product = tableViewStorage.getSelectionModel().getSelectedItem();
         if (product == null) return;
 
@@ -138,6 +139,7 @@ public class MainController {
             } );
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("izuzetak");
         }
     }
 
