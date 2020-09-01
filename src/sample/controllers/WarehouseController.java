@@ -31,13 +31,13 @@ public class WarehouseController {
     public void clickOk(ActionEvent actionEvent) {
         boolean Ok = true;
 
-        if (fieldName.getText().trim().isEmpty()) {
-            fieldName.getStyleClass().removeAll("poljeIspravno");
-            fieldName.getStyleClass().add("poljeNijeIspravno");
+        if (fieldName.getText().trim().isEmpty() || fieldName.getText().toString().length() <= 1) {
+            fieldName.getStyleClass().removeAll("fieldCorrect");
+            fieldName.getStyleClass().add("fieldIncorrect");
             Ok = false;
         } else {
-            fieldName.getStyleClass().removeAll("poljeNijeIspravno");
-            fieldName.getStyleClass().add("poljeIspravno");
+            fieldName.getStyleClass().removeAll("fieldIncorrect");
+            fieldName.getStyleClass().add("fieldCorrect");
         }
 
         if (!Ok) return;
