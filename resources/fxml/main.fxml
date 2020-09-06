@@ -28,7 +28,7 @@
                 <Button fx:id="btnUpdateProduct" mnemonicParsing="false" prefWidth="Infinity" onAction="#actionUpdateProduct" text="Update product" />
                 <Button fx:id="btnDeleteProduct" mnemonicParsing="false" prefWidth="Infinity" onAction="#actionDeleteProduct" text="Delete product" />
                 <Button fx:id="btnReport" mnemonicParsing="false" prefWidth="Infinity" text="Monthly report" />
-                <Button fx:id="btnReportFile" mnemonicParsing="false" prefWidth="Infinity" text="File monthly report" />
+                <Button fx:id="btnDatabase" mnemonicParsing="false" prefWidth="Infinity" text="Database" />
                 
 
                 <VBox prefHeight="100.0" prefWidth="172.0">
@@ -43,7 +43,7 @@
 
                     </children></VBox>
                 
-                <Button fx:id="btnExit" mnemonicParsing="false" prefWidth="Infinity" text="Exit" />
+                <Button fx:id="btnExit" onAction="#clickExit" mnemonicParsing="false" prefWidth="Infinity" text="Exit" />
 
 
             </children>

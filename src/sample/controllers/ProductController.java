@@ -13,6 +13,7 @@ import sample.dto.Type;
 import sample.dto.Warehouse;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ProductController {
     public TextField fieldName;
@@ -61,39 +62,78 @@ public class ProductController {
     }
 
     public void clickOk(ActionEvent actionEvent) {
-        boolean sveOk = true;
+        boolean Ok = true;
 
-//        if (fieldNaziv.getText().trim().isEmpty()) {
-//            fieldNaziv.getStyleClass().removeAll("poljeIspravno");
-//            fieldNaziv.getStyleClass().add("poljeNijeIspravno");
-//            sveOk = false;
-//        } else {
-//            fieldNaziv.getStyleClass().removeAll("poljeNijeIspravno");
-//            fieldNaziv.getStyleClass().add("poljeIspravno");
-//        }
-//
-//
-//        int brojStanovnika = 0;
-//        try {
-//            brojStanovnika = Integer.parseInt(fieldBrojStanovnika.getText());
-//        } catch (NumberFormatException e) {
-//            // ...
-//        }
-//        if (brojStanovnika <= 0) {
-//            fieldBrojStanovnika.getStyleClass().removeAll("poljeIspravno");
-//            fieldBrojStanovnika.getStyleClass().add("poljeNijeIspravno");
-//            sveOk = false;
-//        } else {
-//            fieldBrojStanovnika.getStyleClass().removeAll("poljeNijeIspravno");
-//            fieldBrojStanovnika.getStyleClass().add("poljeIspravno");
-//        }
-//
-//        if (!sveOk) return;
-//
-//        if (grad == null) grad = new Grad();
-//        grad.setNaziv(fieldNaziv.getText());
-//        grad.setBrojStanovnika(Integer.parseInt(fieldBrojStanovnika.getText()));
-//        grad.setDrzava(choiceDrzava.getValue());
+        if (fieldName.getText().trim().isEmpty()) {
+            fieldName.getStyleClass().removeAll("fieldCorrect");
+            fieldName.getStyleClass().add("fieldIncorrect");
+            Ok = false;
+        } else {
+            fieldName.getStyleClass().removeAll("fieldIncorrect");
+            fieldName.getStyleClass().add("fieldCorrect");
+        }
+
+
+        int amount = 0;
+        try {
+            amount = Integer.parseInt(fieldAmount.getText());
+        } catch (NumberFormatException e) {
+            // ...
+        }
+        if (amount <= 0) {
+            fieldAmount.getStyleClass().removeAll("fieldCorrect");
+            fieldAmount.getStyleClass().add("fieldIncorrect");
+            Ok = false;
+        } else {
+            fieldAmount.getStyleClass().removeAll("fieldIncorrect");
+            fieldAmount.getStyleClass().add("fieldCorrect");
+        }
+
+        double unitPrice = 0;
+        try {
+            unitPrice = Double.parseDouble(fieldUnitPrice.getText());
+        } catch (NumberFormatException e) {
+            // ...
+        }
+        if (unitPrice <= 0) {
+            fieldUnitPrice.getStyleClass().removeAll("fieldCorrect");
+            fieldUnitPrice.getStyleClass().add("fieldIncorrect");
+            Ok = false;
+        } else {
+            fieldUnitPrice.getStyleClass().removeAll("fieldIncorrect");
+            fieldUnitPrice.getStyleClass().add("fieldCorrect");
+        }
+
+
+        double price = 0;
+        try {
+            price = Double.parseDouble(fieldPrice.getText());
+        } catch (NumberFormatException e) {
+            // ...
+        }
+        if (price <= 0) {
+            fieldPrice.getStyleClass().removeAll("fieldCorrect");
+            fieldPrice.getStyleClass().add("fieldIncorrect");
+            Ok = false;
+        } else {
+            fieldPrice.getStyleClass().removeAll("fieldIncorrect");
+            fieldPrice.getStyleClass().add("fieldCorrect");
+        }
+
+
+
+        if (!Ok) return;
+
+        if (product == null) product = new Product();
+        product.setName(fieldName.getText());
+        product.setAmount(amount);
+        product.setUnitPrice(unitPrice);
+        product.setPrice(price);
+        product.setType(choiceType.getValue());
+        product.setWarehouse(choiceWarehouse.getValue());
+        product.setDateAdded((Date) dateAdded.getUserData());
+        product.setExpirationDate((Date) dateAdded.getUserData());
+
         Stage stage = (Stage) fieldName.getScene().getWindow();
         stage.close();
     }

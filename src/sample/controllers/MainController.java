@@ -8,10 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sample.dto.Product;
@@ -36,6 +33,7 @@ public class MainController {
     public TableColumn colStorage;
     public TableColumn colDate;
     public TableColumn colDateExp;
+    public Button btnExit;
 
     private ProductModel model;
     private WarehouseModel warehouseModel;
@@ -92,7 +90,7 @@ public class MainController {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/warehouse.fxml"));
-            WarehouseController warehouseController = new WarehouseController(); //bila dva argumenta u konstruktoru
+            WarehouseController warehouseController = new WarehouseController();
             loader.setController(warehouseController);
             root = loader.load();
             stage.setTitle("New warehouse");
@@ -114,7 +112,6 @@ public class MainController {
     }
 
     public void actionUpdateProduct(ActionEvent actionEvent) {
-        System.out.println("uslo");
         Product product = tableViewStorage.getSelectionModel().getSelectedItem();
         if (product == null) return;
 
@@ -158,6 +155,11 @@ public class MainController {
             model.deleteProduct(product);
             listProduct.setAll(model.getProducts());
         }
+    }
+
+    public void clickExit(ActionEvent actionEvent) {
+        Stage stage = (Stage) btnExit.getScene().getWindow();
+        stage.close();
     }
 
 }
