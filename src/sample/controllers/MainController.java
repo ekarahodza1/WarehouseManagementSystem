@@ -16,7 +16,11 @@ import sample.dto.Warehouse;
 import sample.models.ProductModel;
 import sample.models.WarehouseModel;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
@@ -132,6 +136,7 @@ public class MainController {
                 if (newProduct != null) {
                     model.updateProduct(product);
                     listProduct.setAll(model.getProducts());
+                    for(int i = 0; i < listProduct.size(); i++) System.out.println(listProduct.get(i).getName());
                 }
             } );
         } catch (IOException e) {
@@ -156,6 +161,74 @@ public class MainController {
             listProduct.setAll(model.getProducts());
         }
     }
+
+    public void actionDatabase(ActionEvent actionEvent){
+        ArrayList<Product> products = new ArrayList<>();
+        ArrayList<Warehouse> warehouses = new ArrayList<>();
+        products.addAll(model.getProducts());
+        warehouses.addAll(warehouseModel.getAll());
+
+        String outputFilePath = "database.txt";
+
+        File file = new File(outputFilePath);
+        BufferedWriter bf = null;;
+        try{
+            bf = new BufferedWriter(new FileWriter(file) );
+            bf.write("product");
+            bf.newLine();
+            bf.newLine();
+            bf.write("id  | name           | type        | amount  | unitPrice | price    | warehouse | dateAdded | expirationDate ");
+            bf.newLine();
+            bf.write("-----------------------------------------------------------------------------------------------------------");
+            bf.newLine();
+            for(Product p : products){
+                String s = ""; s += p.getId();
+                while (s.length() < 4) s += " "; s += "| "; s += p.getName();
+                while (s.length() <= 20) s += " "; s += "| "; s += p.getType();
+                while (s.length() <= 34) s += " "; s += "| "; s += p.getAmount();
+                while (s.length() <= 44) s += " "; s += "| "; s += p.getUnitPrice();
+                while (s.length() <= 56) s += " "; s += "| "; s += p.getPrice();
+                while (s.length() <= 66) s += " "; s += "| "; s += p.getWarehouse().getId();
+                while (s.length() <= 78) s += " "; s += "| "; s += p.getDateAddedString();
+                while (s.length() <= 91) s += " "; s += "| "; s += p.getExpirationDateString();
+
+                bf.write(s);
+                bf.newLine();
+                bf.write("-----------------------------------------------------------------------------------------------------------");
+                bf.newLine();
+            }
+
+            bf.newLine();
+            bf.newLine();
+            bf.write("warehouse");
+            bf.newLine();
+            bf.newLine();
+            bf.write("id  | name           ");
+            bf.newLine();
+            bf.write("------------------------");
+            bf.newLine();
+
+            for (Warehouse w : warehouses) {
+                String s = ""; s += w.getId();
+                while (s.length() < 4) s += " "; s += "| "; s += w.getName();
+                bf.write(s);
+                bf.newLine();
+                bf.write("------------------------");
+                bf.newLine();
+            }
+
+            bf.flush();
+        }catch(IOException e){
+            e.printStackTrace();
+        }finally{
+            try{
+                bf.close();
+            }catch(Exception e){}
+        }
+
+    }
+
+
 
     public void clickExit(ActionEvent actionEvent) {
         Stage stage = (Stage) btnExit.getScene().getWindow();

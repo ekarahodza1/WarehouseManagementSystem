@@ -106,6 +106,7 @@ public class ProductModel {
     }
 
     public void updateProduct(Product product) {
+
         try {
             ResultSet rs = getID.executeQuery();
             int id = 1;
@@ -122,7 +123,6 @@ public class ProductModel {
             updateProduct.setInt(7, product.getWarehouse().getId());
             updateProduct.setString(8, product.getDateAddedString());
             updateProduct.setString(9, product.getExpirationDateString());
-
             updateProduct.executeUpdate();
 
         } catch (SQLException e) {
