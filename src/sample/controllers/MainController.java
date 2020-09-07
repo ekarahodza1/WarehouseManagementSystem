@@ -289,7 +289,6 @@ public class MainController {
             double usd = object.getDouble("USD");
             double aud = object.getDouble("AUD");
 
-            System.out.println(date + " " + bam + " " + eur + " " + bam + " " + usd + " " + aud);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Exchange rates");
             alert.setHeaderText("Exchange rates for " + date);
@@ -309,7 +308,6 @@ public class MainController {
         }
 
     }
-
 
     public void clickExit(ActionEvent actionEvent) {
         Stage stage = (Stage) btnExit.getScene().getWindow();

@@ -50,6 +50,10 @@ public class ProductModel {
             deleteProduct = conn.prepareStatement("DELETE FROM product WHERE id=?");
             addProduct = conn.prepareStatement("INSERT INTO product VALUES(?,?,?,?,?,?,?,?,?)");
             getID = conn.prepareStatement("SELECT MAX(id)+1 FROM product");
+            getWarehouse = conn.prepareStatement("SELECT * FROM warehouse WHERE id=?");
+            addWarehouse = conn.prepareStatement("INSERT INTO warehouse VALUES(?,?)");
+            getAll = conn.prepareStatement("SELECT * FROM warehouse");
+            getIDWarehouse = conn.prepareStatement("SELECT MAX(id)+1 FROM warehouse");
 
 
         } catch (SQLException e) {
@@ -80,7 +84,6 @@ public class ProductModel {
             e.printStackTrace();
         }
     }
-
 
     public void addProduct(Product product){
         try {
@@ -128,7 +131,6 @@ public class ProductModel {
 
     }
 
-
     public void deleteProduct(Product product) {
         try {
             deleteProduct.setInt(1, product.getId());
@@ -164,9 +166,9 @@ public class ProductModel {
                 date = Date.valueOf(rs.getString(8));
             }
 
-            Warehouse w = new Warehouse(rs.getInt(7), " ");
-//            Warehouse w = new Warehouse();
-//            w = warehouseModel.getWarehouse(rs.getInt(7));
+   //         Warehouse w = new Warehouse(rs.getInt(7), " ");
+            Warehouse w = new Warehouse();
+            w = getWarehouse(rs.getInt(7));
 
             Product p = new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),
                     rs.getDouble(5), rs.getDouble(6), w, date, expirationDate);
@@ -187,6 +189,52 @@ public class ProductModel {
 
                 Product product = getProductFromResultset(rs);
                 result.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public void addWarehouse(Warehouse warehouse){
+        try {
+            ResultSet rs = getIDWarehouse.executeQuery();
+            int id = 1;
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+
+            addWarehouse.setInt(1, id);
+            addWarehouse.setString(2, warehouse.getName());
+
+            addWarehouse.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public Warehouse getWarehouse(int id){
+        try {
+            getWarehouse.setInt(1, id);
+            ResultSet rs = getWarehouse.executeQuery();
+            if (!rs.next()) return null;
+            Warehouse warehouse = new Warehouse(rs.getInt(1), rs.getString(2));
+            return warehouse;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<Warehouse> getAll() {
+        ArrayList<Warehouse> result = new ArrayList();
+        try {
+            ResultSet rs = getAll.executeQuery();
+            while (rs.next()) {
+                Warehouse warehouse = new Warehouse(rs.getInt(1), rs.getString(2));
+                result.add(warehouse);
             }
         } catch (SQLException e) {
             e.printStackTrace();

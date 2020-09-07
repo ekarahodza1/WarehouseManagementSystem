@@ -39,12 +39,14 @@ public class ProductController {
     public void initialize() {
         choiceWarehouse.setItems(listWarehouse);
         choiceType.setItems(listType);
+        choiceWarehouse.getSelectionModel().selectFirst();
+        choiceType.getSelectionModel().selectFirst();
         if (product != null) {
             fieldName.setText(product.getName());
             fieldAmount.setText(Integer.toString(product.getAmount()));
             fieldUnitPrice.setText(Double.toString(product.getUnitPrice()));
             fieldPrice.setText(Double.toString(product.getPrice()));
-            choiceWarehouse.getSelectionModel().select(product.getWarehouse());
+            choiceWarehouse.getSelectionModel().select(product.getWarehouse().getId());
             choiceType.getSelectionModel().select(product.getType());
             dateAdded.setUserData(product.getDateAdded());
             if (product.getExpirationDate() != null) expirationDate.setUserData(product.getExpirationDate());
