@@ -15,19 +15,19 @@ import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import sample.dto.Product;
+import sample.dto.Type;
 import sample.dto.Warehouse;
 import sample.models.ProductModel;
 import sample.models.WarehouseModel;
-import java.util.Scanner;
+
+import java.util.*;
 
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -44,10 +44,15 @@ public class MainController {
     public TableColumn colDate;
     public TableColumn colDateExp;
     public Button btnExit;
+    public ChoiceBox choiceType;
+    public ChoiceBox choiceWarehouse;
 
     private ProductModel model;
     private WarehouseModel warehouseModel;
     private ObservableList<Product> listProduct;
+    public ObservableList<Warehouse> listWarehouse;
+    public ObservableList<String> listType;
+   // public ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList("All", "Clothes", "Food", "Hygiene", "Electronics", "Construction"));
 
     public SimpleStringProperty time;
     public String getLTime() { return time.get(); }
@@ -60,6 +65,10 @@ public class MainController {
         warehouseModel = WarehouseModel.getInstance();
         listProduct = FXCollections.observableArrayList(model.getProducts());
         time = new SimpleStringProperty("00:00");
+        listWarehouse = FXCollections.observableArrayList(warehouseModel.getAll());
+        listWarehouse.add(0, new Warehouse(-1, "All"));
+        ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList("All", "Clothes", "Food", "Hygiene", "Electronics", "Construction"));
+        listType = FXCollections.observableArrayList(arrayList);
     }
 
     @FXML
@@ -75,6 +84,46 @@ public class MainController {
        // colStorage.setCellValueFactory(new PropertyValueFactory("warehouse"));
         colDate.setCellValueFactory(new PropertyValueFactory("dateAdded"));
         colDateExp.setCellValueFactory(new PropertyValueFactory("expirationDate"));
+        choiceType.setItems(listType);
+        choiceWarehouse.setItems(listWarehouse);
+        choiceWarehouse.getSelectionModel().selectFirst();
+        choiceType.getSelectionModel().selectFirst();
+
+        choiceType.getSelectionModel().selectedIndexProperty().addListener((obs, oldValue, newValue) -> {
+
+            List<Product> products = model.getProducts();
+            List<Product> result = new ArrayList<>();
+
+            if (choiceType.getValue().toString().matches("All")) {
+                listProduct.setAll(products);
+            }
+            else if (choiceType.getValue().toString().matches("Clothes")){
+                result = products.stream().filter(x -> "CLOTHES".equals(x.getType().toString())).collect(Collectors.toList());
+                System.out.println("uslo odjeca");
+                listProduct.setAll(result);
+            }
+            else if (choiceType.getValue().toString().matches("Food")){
+                result = products.stream().filter(x -> "FOOD".equals(x.getType().toString())).collect(Collectors.toList());
+                System.out.println("uslo hrana");
+                listProduct.setAll(result);
+            }
+            else if (choiceType.getValue().toString().matches("Hygiene")){
+                result = products.stream().filter(x -> "HYGIENE".equals(x.getType().toString())).collect(Collectors.toList());
+                System.out.println("uslo higijena");
+                listProduct.setAll(result);
+            }
+            else if (choiceType.getValue().toString().matches("Electronics")){
+                result = products.stream().filter(x -> "ELECTRONICS".equals(x.getType().toString())).collect(Collectors.toList());
+                System.out.println("uslo elect");
+                listProduct.setAll(result);
+            }
+            else {
+                result = products.stream().filter(x -> "CONSTRUCTION".equals(x.getType().toString())).collect(Collectors.toList());
+                System.out.println("uslo const");
+                listProduct.setAll(result);
+            }
+
+        });
 
 
         new Thread(() -> {
@@ -308,6 +357,7 @@ public class MainController {
         }
 
     }
+
 
     public void clickExit(ActionEvent actionEvent) {
         Stage stage = (Stage) btnExit.getScene().getWindow();

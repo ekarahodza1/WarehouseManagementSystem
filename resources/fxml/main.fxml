@@ -41,10 +41,10 @@
                 <VBox prefHeight="100.0" prefWidth="172.0">
                     <children>
                         <Label text="Filter by" />
-                  <ChoiceBox fx:id="cboxType" prefWidth="150.0" />
-                   <ChoiceBox fx:id="cboxWarehouse" prefWidth="150.0" />
-                   <ChoiceBox fx:id="cboxDate" prefWidth="150.0" />
-                  <Slider fx:id="sliderPrice" prefHeight="30.0" prefWidth="188.0" />
+                  <ChoiceBox fx:id="choiceType" prefWidth="150.0" />
+                   <ChoiceBox fx:id="choiceWarehouse" prefWidth="150.0" />
+
+
                   <Label prefHeight="52.0" prefWidth="28.0" text="Label" />
 
 
