@@ -36,7 +36,7 @@ public class MainController {
     public TableColumn colAmount;
     public TableColumn colPrice;
     public TableColumn colPriceAll;
-    public TableColumn colStorage;
+    public TableColumn<Product, String> colStorage;
     public TableColumn colDate;
     public TableColumn colDateExp;
     public Button btnExit;
@@ -67,7 +67,8 @@ public class MainController {
         colAmount.setCellValueFactory(new PropertyValueFactory("amount"));
         colPrice.setCellValueFactory(new PropertyValueFactory("unitPrice"));
         colPriceAll.setCellValueFactory(new PropertyValueFactory("price"));
-        colStorage.setCellValueFactory(new PropertyValueFactory("warehouse"));
+        colStorage.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getWarehouse().getName()));
+       // colStorage.setCellValueFactory(new PropertyValueFactory("warehouse"));
         colDate.setCellValueFactory(new PropertyValueFactory("dateAdded"));
         colDateExp.setCellValueFactory(new PropertyValueFactory("expirationDate"));
 
@@ -172,7 +173,6 @@ public class MainController {
                 if (newProduct != null) {
                     model.updateProduct(product);
                     listProduct.setAll(model.getProducts());
-                    for(int i = 0; i < listProduct.size(); i++) System.out.println(listProduct.get(i).getName());
                 }
             } );
         } catch (IOException e) {

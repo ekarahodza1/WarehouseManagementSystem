@@ -1,6 +1,7 @@
 package sample.models;
 
 import sample.dto.Product;
+import sample.dto.Warehouse;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,6 +12,7 @@ import java.util.Scanner;
 public class ProductModel {
     private static ProductModel instance;
     private Connection conn;
+    //private WarehouseModel warehouseModel;
 
     private PreparedStatement product, getProducts, getProduct, updateProduct, deleteProduct, addProduct, getID;
 
@@ -20,6 +22,7 @@ public class ProductModel {
     }
 
     private ProductModel() {
+       // warehouseModel = WarehouseModel.getInstance();
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:database.db");
 
@@ -43,8 +46,7 @@ public class ProductModel {
 
             getProducts = conn.prepareStatement("SELECT * FROM product");
             getProduct = conn.prepareStatement("SELECT * FROM product WHERE id=?");
-            updateProduct = conn.prepareStatement("UPDATE product SET name=?, type=?, amount=?, unitPrice=?, " +
-                    "price=?, warehouse=?, dateAdded=?, expirationDate=? WHERE id=?");
+            updateProduct = conn.prepareStatement("UPDATE product SET name=?, type=?, amount=?, unitPrice=?, price=?, warehouse=?, dateAdded=?, expirationDate=? WHERE id=?");
             deleteProduct = conn.prepareStatement("DELETE FROM product WHERE id=?");
             addProduct = conn.prepareStatement("INSERT INTO product VALUES(?,?,?,?,?,?,?,?,?)");
             getID = conn.prepareStatement("SELECT MAX(id)+1 FROM product");
@@ -105,26 +107,20 @@ public class ProductModel {
 
     }
 
-    public void updateProduct(Product product) {
+    public void updateProduct(Product product)  {
 
-        try {
-            ResultSet rs = getID.executeQuery();
-            int id = 1;
-            if (rs.next()) {
-                id = rs.getInt(1);
-            }
+        try{
 
-            updateProduct.setInt(1, id);
-            updateProduct.setString(2, product.getName());
-            updateProduct.setInt(3, product.getIntType());
-            updateProduct.setInt(4, product.getAmount());
-            updateProduct.setDouble(5, product.getUnitPrice());
-            updateProduct.setDouble(6, product.getPrice());
-            updateProduct.setInt(7, product.getWarehouse().getId());
-            updateProduct.setString(8, product.getDateAddedString());
-            updateProduct.setString(9, product.getExpirationDateString());
+            updateProduct.setString(1, product.getName());
+            updateProduct.setInt(2, product.getIntType());
+            updateProduct.setInt(3, product.getAmount());
+            updateProduct.setDouble(4, product.getUnitPrice());
+            updateProduct.setDouble(5, product.getPrice());
+            updateProduct.setInt(6, product.getWarehouse().getId());
+            updateProduct.setString(7, product.getDateAddedString());
+            updateProduct.setString(8, product.getExpirationDateString());
+            updateProduct.setInt(9, product.getId());
             updateProduct.executeUpdate();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -167,8 +163,11 @@ public class ProductModel {
                 date = Date.valueOf(rs.getString(8));
             }
 
+            Warehouse w = new Warehouse(rs.getInt(7), " ");
+            //w = warehouseModel.getWarehouse(rs.getInt(7));
+
             Product p = new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),
-                    rs.getDouble(5), rs.getDouble(6), rs.getInt(7), date, expirationDate);
+                    rs.getDouble(5), rs.getDouble(6), w, date, expirationDate);
 
             return p;
         }

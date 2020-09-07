@@ -8,15 +8,15 @@
     <center>
         <TableView fx:id="tableViewStorage" prefHeight="400.0" prefWidth="538.0" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn fx:id="colId" prefWidth="52.0" text="ID" />
-                <TableColumn fx:id="colName" prefWidth="76.0" text="Name" />
+                <TableColumn fx:id="colId" prefWidth="43.0" text="ID" />
+                <TableColumn fx:id="colName" prefWidth="85.0" text="Name" />
                 <TableColumn fx:id="colType" prefWidth="96.0" text="Type" />
-                <TableColumn fx:id="colAmount" prefWidth="81.0" text="Amount" />
-                <TableColumn fx:id="colPrice" minWidth="4.0" prefWidth="94.0" text="Unit price" />
-                <TableColumn fx:id="colPriceAll" prefWidth="74.0" text="Price" />
-                <TableColumn fx:id="colStorage" prefWidth="94.0" text="Warehouse" />
-                <TableColumn fx:id="colDate" prefWidth="92.0" text="Date added" />
-                <TableColumn fx:id="colDateExp" prefWidth="92.0" text="Expiration date" />
+                <TableColumn fx:id="colAmount" prefWidth="62.0" text="Amount" />
+                <TableColumn fx:id="colPrice" minWidth="4.0" prefWidth="74.0" text="Unit price" />
+                <TableColumn fx:id="colPriceAll" prefWidth="72.0" text="Price" />
+                <TableColumn fx:id="colStorage" prefWidth="108.0" text="Warehouse" />
+                <TableColumn fx:id="colDate" prefWidth="94.0" text="Date added" />
+                <TableColumn fx:id="colDateExp" prefWidth="96.0" text="Expiration date" />
             </columns>
         </TableView>
     </center>
@@ -35,6 +35,7 @@
                 <Button fx:id="btnDeleteProduct" mnemonicParsing="false" onAction="#actionDeleteProduct" prefWidth="Infinity" text="Delete product" />
                 <Button fx:id="btnReport" mnemonicParsing="false" prefWidth="Infinity" text="Monthly report" />
                 <Button fx:id="btnDatabase" mnemonicParsing="false" onAction="#actionDatabase" prefWidth="Infinity" text="Database" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="161.0" text="Button" />
 
 
                 <VBox prefHeight="100.0" prefWidth="172.0">
@@ -44,7 +45,6 @@
                    <ChoiceBox fx:id="cboxWarehouse" prefWidth="150.0" />
                    <ChoiceBox fx:id="cboxDate" prefWidth="150.0" />
                   <Slider fx:id="sliderPrice" prefHeight="30.0" prefWidth="188.0" />
-                  <Button mnemonicParsing="false" text="Button" />
                   <Label prefHeight="52.0" prefWidth="28.0" text="Label" />
 
 
