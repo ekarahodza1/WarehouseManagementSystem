@@ -17,10 +17,11 @@ public class Main extends Application {
 //        primaryStage.setResizable(false);
 //        primaryStage.show();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
-        MainController ctrl = new MainController();
-        loader.setController(ctrl);
-        Parent root = loader.load();
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
+//        MainController ctrl = new MainController();
+//        loader.setController(ctrl);
+//        Parent root = loader.load();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
         primaryStage.setTitle("Warehouse management system");
         primaryStage.setScene(new Scene(root, 900, 500));
         primaryStage.show();

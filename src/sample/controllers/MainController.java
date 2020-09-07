@@ -1,5 +1,6 @@
 package sample.controllers;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -43,10 +45,17 @@ public class MainController {
     private WarehouseModel warehouseModel;
     private ObservableList<Product> listProduct;
 
+    public SimpleStringProperty time;
+    public String getLTime() { return time.get(); }
+    public SimpleStringProperty lTimeProperty() { return time; }
+    public void setLTime(String label) { this.time.set(label); }
+
+
     public MainController() {
         model = ProductModel.getInstance();
         warehouseModel = WarehouseModel.getInstance();
         listProduct = FXCollections.observableArrayList(model.getProducts());
+        time = new SimpleStringProperty("00:00");
     }
 
     @FXML
@@ -61,6 +70,33 @@ public class MainController {
         colStorage.setCellValueFactory(new PropertyValueFactory("warehouse"));
         colDate.setCellValueFactory(new PropertyValueFactory("dateAdded"));
         colDateExp.setCellValueFactory(new PropertyValueFactory("expirationDate"));
+
+
+        new Thread(() -> {
+            try {
+                int min = 0;
+                int sec = 0;
+                while (true) {
+                    sec++;
+                    if (min == 60) min = 0;
+                    if (sec == 60) {
+                        sec = 0;
+                        min++;
+                    }
+                    String s = "";
+                    if (min < 10) s += "0" + min + ":";
+                    else s += min + ":";
+                    if (sec < 10) s += "0" + sec;
+                    else s += sec;
+                    String finalS = s;
+                    Platform.runLater(() -> setLTime(finalS));
+
+                    Thread.sleep(1000);
+                }
+            } catch (InterruptedException e) {
+
+            }
+        }).start();
     }
 
     public void actionAddProduct(ActionEvent actionEvent) {
