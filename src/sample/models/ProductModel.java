@@ -12,9 +12,9 @@ import java.util.Scanner;
 public class ProductModel {
     private static ProductModel instance;
     private Connection conn;
-    //private WarehouseModel warehouseModel;
 
-    private PreparedStatement product, getProducts, getProduct, updateProduct, deleteProduct, addProduct, getID;
+
+    private PreparedStatement product, getProducts, getProduct, updateProduct, deleteProduct, addProduct, getID, getWarehouse, addWarehouse, getIDWarehouse, getAll;
 
     public static ProductModel getInstance() {
         if (instance == null) instance = new ProductModel();
@@ -22,7 +22,7 @@ public class ProductModel {
     }
 
     private ProductModel() {
-       // warehouseModel = WarehouseModel.getInstance();
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:database.db");
 
@@ -50,6 +50,7 @@ public class ProductModel {
             deleteProduct = conn.prepareStatement("DELETE FROM product WHERE id=?");
             addProduct = conn.prepareStatement("INSERT INTO product VALUES(?,?,?,?,?,?,?,?,?)");
             getID = conn.prepareStatement("SELECT MAX(id)+1 FROM product");
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -164,7 +165,8 @@ public class ProductModel {
             }
 
             Warehouse w = new Warehouse(rs.getInt(7), " ");
-            //w = warehouseModel.getWarehouse(rs.getInt(7));
+//            Warehouse w = new Warehouse();
+//            w = warehouseModel.getWarehouse(rs.getInt(7));
 
             Product p = new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),
                     rs.getDouble(5), rs.getDouble(6), w, date, expirationDate);

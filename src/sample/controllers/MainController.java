@@ -12,17 +12,21 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import sample.dto.Product;
 import sample.dto.Warehouse;
 import sample.models.ProductModel;
 import sample.models.WarehouseModel;
+import java.util.Scanner;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
@@ -264,6 +268,47 @@ public class MainController {
 
     }
 
+    public void actionExchangeRate(ActionEvent actionEvent){
+        String adr = "http://data.fixer.io/api/latest?access_key=4955d494d233822ce160a499de840387&symbols=BAM,EUR,USD,GBP,AUD";
+        try {
+            URL url = new URL(adr);
+            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8));
+            String json = "", line = null;
+            while ((line = in.readLine()) != null)
+                json = json + line;
+
+            JSONObject obj = new JSONObject(json);
+            Date date = null;
+            date = java.sql.Date.valueOf(obj.getString("date"));
+            JSONObject object  = obj.getJSONObject("rates");
+
+
+            double bam = object.getDouble("BAM");
+            double eur = object.getDouble("EUR");
+            double gbp = object.getDouble("GBP");
+            double usd = object.getDouble("USD");
+            double aud = object.getDouble("AUD");
+
+            System.out.println(date + " " + bam + " " + eur + " " + bam + " " + usd + " " + aud);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Exchange rates");
+            alert.setHeaderText("Exchange rates for " + date);
+            alert.setContentText("EUR   " + eur + "\nBAM   " + bam + "\nUSD   " + usd + "\nGBP   " + gbp + "\nAUD   " + aud);
+            alert.setResizable(true);
+            alert.showAndWait();
+
+            in.close();
+        } catch(MalformedURLException e) {
+            System.out.println("String "+adr+" ne predstavlja validan URL");
+        } catch(IOException e) {
+            System.out.println("Greška pri kreiranju ulaznog toka");
+            System.out.println(e.getMessage());
+        } catch(Exception e) {
+            System.out.println("Poteškoće sa obradom JSON podataka");
+            System.out.println(e.getMessage());
+        }
+
+    }
 
 
     public void clickExit(ActionEvent actionEvent) {
