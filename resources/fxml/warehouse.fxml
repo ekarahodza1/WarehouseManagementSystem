@@ -4,8 +4,9 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<GridPane hgap="5.0" vgap="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane hgap="5.0" style="-fx-background-color: #CCDBEE;" vgap="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/css/main.css" />
     </stylesheets>
@@ -18,15 +19,33 @@
         <RowConstraints />
         <RowConstraints />
         <RowConstraints />
+      <RowConstraints />
     </rowConstraints>
     <children>
-        <Label text="%name" />
+        <Label text="%name" textFill="#233c67">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font></Label>
         <TextField fx:id="fieldName" GridPane.columnIndex="1" />
+      <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" >
+        <font>
+            <Font name="Verdana" size="12.0" />
+        </font></TextField>
+      <Label text="%location" textFill="#233c67" GridPane.rowIndex="1" >
+          <font>
+              <Font name="Verdana" size="12.0" />
+          </font></Label>
 
-        <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+        <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
             <buttons>
-                <Button fx:id="btnOk" mnemonicParsing="false" onAction="#clickOk" text="Ok" />
-                <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#clickCancel" text="%cancel" />
+                <Button fx:id="btnOk" mnemonicParsing="false" onAction="#clickOk" style="-fx-background-color: #4470AD;" text="Ok" textFill="WHITE">
+                    <font>
+                        <Font name="Verdana" size="12.0" />
+                    </font></Button>
+                <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#clickCancel" style="-fx-background-color: #4470AD;" text="%cancel" textFill="WHITE">
+                    <font>
+                        <Font name="Verdana" size="12.0" />
+                    </font></Button>
             </buttons>
         </ButtonBar>
     </children>

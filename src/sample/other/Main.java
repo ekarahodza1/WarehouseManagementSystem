@@ -25,7 +25,7 @@ public class Main extends Application {
 //        loader.setController(ctrl);
 //        Parent root = loader.load();
 
-        Locale.setDefault(new Locale("bs", "BA"));
+        //Locale.setDefault(new Locale("bs", "BA"));
         ResourceBundle bundle = ResourceBundle.getBundle("translation");
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"), bundle);
         primaryStage.setTitle("Warehouse management system");
