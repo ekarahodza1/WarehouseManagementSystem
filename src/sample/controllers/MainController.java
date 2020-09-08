@@ -89,42 +89,6 @@ public class MainController {
         choiceWarehouse.getSelectionModel().selectFirst();
         choiceType.getSelectionModel().selectFirst();
 
-        choiceType.getSelectionModel().selectedIndexProperty().addListener((obs, oldValue, newValue) -> {
-
-            List<Product> products = model.getProducts();
-            List<Product> result = new ArrayList<>();
-
-            if (choiceType.getValue().toString().matches("All")) {
-                listProduct.setAll(products);
-            }
-            else if (choiceType.getValue().toString().matches("Clothes")){
-                result = products.stream().filter(x -> "CLOTHES".equals(x.getType().toString())).collect(Collectors.toList());
-                System.out.println("uslo odjeca");
-                listProduct.setAll(result);
-            }
-            else if (choiceType.getValue().toString().matches("Food")){
-                result = products.stream().filter(x -> "FOOD".equals(x.getType().toString())).collect(Collectors.toList());
-                System.out.println("uslo hrana");
-                listProduct.setAll(result);
-            }
-            else if (choiceType.getValue().toString().matches("Hygiene")){
-                result = products.stream().filter(x -> "HYGIENE".equals(x.getType().toString())).collect(Collectors.toList());
-                System.out.println("uslo higijena");
-                listProduct.setAll(result);
-            }
-            else if (choiceType.getValue().toString().matches("Electronics")){
-                result = products.stream().filter(x -> "ELECTRONICS".equals(x.getType().toString())).collect(Collectors.toList());
-                System.out.println("uslo elect");
-                listProduct.setAll(result);
-            }
-            else {
-                result = products.stream().filter(x -> "CONSTRUCTION".equals(x.getType().toString())).collect(Collectors.toList());
-                System.out.println("uslo const");
-                listProduct.setAll(result);
-            }
-
-        });
-
 
         new Thread(() -> {
             try {
@@ -356,6 +320,48 @@ public class MainController {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    public void actionTypeChosen(ActionEvent actionEvent){
+        List<Product> products = model.getProducts();
+        List<Product> result = new ArrayList<>();
+
+        if (choiceType.getValue().toString().matches("All")) {
+            listProduct.setAll(products);
+        }
+        else if (choiceType.getValue().toString().matches("Clothes")){
+            result = products.stream().filter(x -> "CLOTHES".equals(x.getType().toString())).collect(Collectors.toList());
+            listProduct.setAll(result);
+        }
+        else if (choiceType.getValue().toString().matches("Food")){
+            result = products.stream().filter(x -> "FOOD".equals(x.getType().toString())).collect(Collectors.toList());
+            listProduct.setAll(result);
+        }
+        else if (choiceType.getValue().toString().matches("Hygiene")){
+            result = products.stream().filter(x -> "HYGIENE".equals(x.getType().toString())).collect(Collectors.toList());
+            listProduct.setAll(result);
+        }
+        else if (choiceType.getValue().toString().matches("Electronics")){
+            result = products.stream().filter(x -> "ELECTRONICS".equals(x.getType().toString())).collect(Collectors.toList());
+            listProduct.setAll(result);
+        }
+        else {
+            result = products.stream().filter(x -> "CONSTRUCTION".equals(x.getType().toString())).collect(Collectors.toList());
+            listProduct.setAll(result);
+        }
+    }
+
+    public void actionWarehouseChosen(ActionEvent actionEvent){
+        List<Product> products = model.getProducts();
+        List<Product> result = new ArrayList<>();
+
+        if (choiceWarehouse.getValue().toString().matches("All")) {
+            listProduct.setAll(products);
+        }
+        else {
+            result = products.stream().filter(x -> choiceWarehouse.getValue().toString().equals(x.getWarehouse().getName())).collect(Collectors.toList());
+            listProduct.setAll(result);
+        }
     }
 
 
