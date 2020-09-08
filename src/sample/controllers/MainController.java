@@ -52,12 +52,16 @@ public class MainController {
     private ObservableList<Product> listProduct;
     public ObservableList<Warehouse> listWarehouse;
     public ObservableList<String> listType;
-   // public ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList("All", "Clothes", "Food", "Hygiene", "Electronics", "Construction"));
 
     public SimpleStringProperty time;
     public String getLTime() { return time.get(); }
     public SimpleStringProperty lTimeProperty() { return time; }
     public void setLTime(String label) { this.time.set(label); }
+
+    public SimpleStringProperty value;
+    public String getLValue() { return value.get(); }
+    public SimpleStringProperty lValueProperty() { return value; }
+    public void setLValue(String label) { this.value.set(label); }
 
 
     public MainController() {
@@ -65,6 +69,7 @@ public class MainController {
         warehouseModel = WarehouseModel.getInstance();
         listProduct = FXCollections.observableArrayList(model.getProducts());
         time = new SimpleStringProperty("00:00");
+        value = new SimpleStringProperty("");
         listWarehouse = FXCollections.observableArrayList(warehouseModel.getAll());
         listWarehouse.add(0, new Warehouse(-1, "All"));
         ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList("All", "Clothes", "Food", "Hygiene", "Electronics", "Construction"));
@@ -88,6 +93,10 @@ public class MainController {
         choiceWarehouse.setItems(listWarehouse);
         choiceWarehouse.getSelectionModel().selectFirst();
         choiceType.getSelectionModel().selectFirst();
+
+        double value = 0;
+        for (int i = 0; i < model.getProducts().size(); i++) value += model.getProducts().get(i).getPrice();
+        setLValue(String.valueOf(value));
 
 
         new Thread(() -> {
@@ -363,7 +372,6 @@ public class MainController {
             listProduct.setAll(result);
         }
     }
-
 
     public void clickExit(ActionEvent actionEvent) {
         Stage stage = (Stage) btnExit.getScene().getWindow();

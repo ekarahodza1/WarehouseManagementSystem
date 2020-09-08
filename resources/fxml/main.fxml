@@ -2,59 +2,175 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.MainController">
     <center>
         <TableView fx:id="tableViewStorage" prefHeight="400.0" prefWidth="538.0" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn fx:id="colId" prefWidth="43.0" text="ID" />
+                <TableColumn fx:id="colId" prefWidth="43.0" style="-fx-text-color: #ffffff;" text="ID" />
                 <TableColumn fx:id="colName" prefWidth="85.0" text="Name" />
                 <TableColumn fx:id="colType" prefWidth="96.0" text="Type" />
                 <TableColumn fx:id="colAmount" prefWidth="62.0" text="Amount" />
                 <TableColumn fx:id="colPrice" minWidth="4.0" prefWidth="74.0" text="Unit price" />
                 <TableColumn fx:id="colPriceAll" prefWidth="72.0" text="Price" />
-                <TableColumn fx:id="colStorage" prefWidth="108.0" text="Warehouse" />
-                <TableColumn fx:id="colDate" prefWidth="94.0" text="Date added" />
-                <TableColumn fx:id="colDateExp" prefWidth="96.0" text="Expiration date" />
+                <TableColumn fx:id="colStorage" prefWidth="89.0" text="Warehouse" />
+                <TableColumn fx:id="colDate" prefWidth="102.0" text="Date added" />
+                <TableColumn fx:id="colDateExp" editable="false" prefWidth="109.0" text="Expiration date" />
             </columns>
         </TableView>
     </center>
     <right>
         <VBox prefHeight="500.0" prefWidth="167.0" spacing="5.0" BorderPane.alignment="CENTER">
             <children>
-            <HBox prefHeight="42.0" prefWidth="157.0">
+            <HBox cache="true" depthTest="ENABLE" prefHeight="33.0" prefWidth="157.0" style="-fx-background-color: #99AFD7;">
                <children>
-                  <Label prefHeight="30.0" prefWidth="80.0" text="Time online: " />
-                  <Label fx:id="lTime" prefHeight="30.0" prefWidth="80.0" text="${controller.lTime}" />
+                  <Label prefHeight="27.0" prefWidth="89.0" text="Time online: " textFill="#233c67">
+                    
+                     <font>
+                        <Font name="Verdana" size="11.0" />
+                     </font></Label>
+                  <Label fx:id="lTime" prefHeight="30.0" prefWidth="80.0" text="${controller.lTime}" textFill="#233c67">
+                     <font>
+                        <Font name="Verdana" size="11.0" />
+                     </font></Label>
                </children>
+               <VBox.margin>
+                  <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </HBox>
-                <Button fx:id="btnAddProduct" mnemonicParsing="false" onAction="#actionAddProduct" prefHeight="25.0" prefWidth="158.0" text="Add product" />
-                <Button fx:id="btnAddWarehouse" mnemonicParsing="false" onAction="#actionAddWarehouse" prefHeight="25.0" prefWidth="161.0" text="Add warehouse" />
-                <Button fx:id="btnUpdateProduct" mnemonicParsing="false" onAction="#actionUpdateProduct" prefWidth="Infinity" text="Update product" />
-                <Button fx:id="btnDeleteProduct" mnemonicParsing="false" onAction="#actionDeleteProduct" prefWidth="Infinity" text="Delete product" />
-                <Button fx:id="btnReport" mnemonicParsing="false" prefWidth="Infinity" text="Monthly report" />
-                <Button fx:id="btnDatabase" mnemonicParsing="false" onAction="#actionDatabase" prefWidth="Infinity" text="Database" />
-            <Button onAction="#actionExchangeRate" mnemonicParsing="false" prefHeight="25.0" prefWidth="161.0" text="Exchange rate" />
+                <Button fx:id="btnAddProduct" mnemonicParsing="false" onAction="#actionAddProduct" prefHeight="25.0" prefWidth="158.0" style="-fx-background-color: #CCDBEE;" text="Add product" textFill="#233c67">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+                    <graphic>
+                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../images/list-add.png" />
+                        </image></ImageView>
+                </graphic></Button>
+                <Button fx:id="btnAddWarehouse" mnemonicParsing="false" onAction="#actionAddWarehouse" prefHeight="25.0" prefWidth="161.0" style="-fx-background-color: #CCDBEE;" text="Add warehouse" textFill="#233c67">
+                    <font>
+                        <Font name="Verdana" size="12.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/list-add.png" />
+                            </image></ImageView>
+                    </graphic></Button>
+                <Button fx:id="btnUpdateProduct" mnemonicParsing="false" onAction="#actionUpdateProduct" prefWidth="Infinity" style="-fx-background-color: #CCDBEE;" text="Update product" textFill="#233c67">
+                    <tooltip>
+                        <Tooltip text="Click on a product to update it" />
+                    </tooltip>
+                    <font>
+                        <Font name="Verdana" size="12.0" />
+                    </font></Button>
+                <Button fx:id="btnDeleteProduct" mnemonicParsing="false" onAction="#actionDeleteProduct" prefWidth="Infinity" style="-fx-background-color: #CCDBEE;" text="Delete product" textFill="#233c67">
+                    <font>
+                        <Font name="Verdana" size="12.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/edit-delete.png" />
+                            </image></ImageView>
+                    </graphic></Button>
+                <Button fx:id="btnReport" mnemonicParsing="false" prefWidth="Infinity" style="-fx-background-color: #CCDBEE;" text="Monthly report" textFill="#233c67">
+                    <font>
+                        <Font name="Verdana" size="12.0" />
+                    </font></Button>
+                <Button fx:id="btnDatabase" mnemonicParsing="false" onAction="#actionDatabase" prefWidth="Infinity" style="-fx-background-color: #CCDBEE;" text="Database" textFill="#233c67">
+                    <tooltip>
+                        <Tooltip text="Click to get current contents of your database" />
+                    </tooltip>
+                    <font>
+                        <Font name="Verdana" size="12.0" />
+                    </font></Button>
+            <Button mnemonicParsing="false" onAction="#actionExchangeRate" prefHeight="25.0" prefWidth="161.0" style="-fx-background-color: #CCDBEE;" text="Exchange rate" textFill="#233c67">
+                <tooltip>
+                    <Tooltip text="Click to get today's exchange rates" />
+                </tooltip>
+                <font>
+                    <Font name="Verdana" size="12.0" />
+                </font>
+                <graphic>
+                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../images/coin.png" />
+                        </image></ImageView>
+                </graphic></Button>
 
 
-                <VBox prefHeight="100.0" prefWidth="172.0">
+                <VBox prefHeight="198.0" prefWidth="149.0" style="-fx-border-color: #99AFD7;">
                     <children>
-                        <Label text="Filter by" />
-                  <ChoiceBox fx:id="choiceType" onAction="#actionTypeChosen"  prefWidth="150.0" />
-                   <ChoiceBox fx:id="choiceWarehouse" onAction="#actionWarehouseChosen" prefWidth="150.0" />
+                  <HBox prefHeight="70.0" prefWidth="136.0">
+                     <children>
+                        <Label prefHeight="25.0" prefWidth="78.0" text="Filter by type" textFill="#233c67">
+                           <font>
+                              <Font name="Verdana" size="10.0" />
+                           </font></Label>
+                        <ChoiceBox fx:id="choiceType" onAction="#actionTypeChosen" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #99AFD7;" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="66.0" prefWidth="141.0">
+                     <children>
+                        <Label prefHeight="26.0" prefWidth="139.0" text="Filter by warehouse" textFill="#233c67">
+                           <font>
+                              <Font name="Verdana" size="10.0" />
+                           </font></Label>
+                         <ChoiceBox fx:id="choiceWarehouse" onAction="#actionWarehouseChosen" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #99AFD7;" />
+                     </children>
+                  </HBox>
 
 
-                  <Label prefHeight="52.0" prefWidth="28.0" text="Label" />
 
+                    </children>
+               <padding>
+                  <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+               </VBox.margin></VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #4470AD;">
+               <children>
+                  <Label prefHeight="55.0" prefWidth="159.0" text="Total product value:" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Verdana Bold" size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="lValue" alignment="CENTER" prefHeight="46.0" prefWidth="149.0" text="${controller.lValue}" textAlignment="CENTER" textFill="#ccdbee" textOverrun="CENTER_ELLIPSIS" underline="true">
+                     <font>
+                        <Font name="Verdana Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
 
-
-                    </children></VBox>
-            <Label text="Label" />
-            <Label prefHeight="64.0" prefWidth="28.0" text="Label" />
-            <Label text="Label" />
-
-                <Button fx:id="btnExit" mnemonicParsing="false" onAction="#clickExit" prefWidth="Infinity" text="Exit" />
+                <Button fx:id="btnExit" mnemonicParsing="false" onAction="#clickExit" prefWidth="Infinity" style="-fx-background-color: #CCDBEE;" text="Exit" textFill="#233c67">
+                    <font>
+                        <Font name="Verdana" size="12.0" />
+                    </font>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/application-exit.png" />
+                     </image></ImageView>
+               </graphic></Button>
 
 
             </children>
