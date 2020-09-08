@@ -7,6 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sample.controllers.MainController;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public class Main extends Application {
 
     @Override
@@ -21,7 +24,10 @@ public class Main extends Application {
 //        MainController ctrl = new MainController();
 //        loader.setController(ctrl);
 //        Parent root = loader.load();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
+
+        Locale.setDefault(new Locale("bs", "BA"));
+        ResourceBundle bundle = ResourceBundle.getBundle("translation");
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"), bundle);
         primaryStage.setTitle("Warehouse management system");
         primaryStage.setScene(new Scene(root, 900, 500));
         primaryStage.show();

@@ -130,7 +130,8 @@ public class MainController {
         Stage stage = new Stage();
         Parent root = null;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/product.fxml"));
+            ResourceBundle bundle = ResourceBundle.getBundle("translation");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/product.fxml"), bundle);
             ProductController productController = new ProductController(null, warehouseModel.getAll());
             loader.setController(productController);
             root = loader.load();
@@ -156,7 +157,8 @@ public class MainController {
         Stage stage = new Stage();
         Parent root = null;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/warehouse.fxml"));
+            ResourceBundle bundle = ResourceBundle.getBundle("translation");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/warehouse.fxml"), bundle);
             WarehouseController warehouseController = new WarehouseController();
             loader.setController(warehouseController);
             root = loader.load();
@@ -185,7 +187,8 @@ public class MainController {
         Stage stage = new Stage();
         Parent root = null;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/product.fxml"));
+            ResourceBundle bundle = ResourceBundle.getBundle("translation");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/product.fxml"), bundle);
             ProductController productController = new ProductController(product, warehouseModel.getAll());
             loader.setController(productController);
             root = loader.load();
