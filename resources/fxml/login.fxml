@@ -2,6 +2,7 @@
 
 <?import java.net.*?>
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -42,9 +43,19 @@
             <buttons>
             <VBox spacing="4.0" style="-fx-border-color: #99AFD7;">
                <children>
-                  <RadioButton mnemonicParsing="false" text="English" />
-                  <RadioButton mnemonicParsing="false" text="Bosanski" />
+                  <Group>
+                     <children>
+                        <RadioButton fx:id="ba" mnemonicParsing="false" prefHeight="52.0" prefWidth="71.0" text="Bosanski">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="g1" />
+                           </toggleGroup></RadioButton>
+                        <RadioButton fx:id="en" mnemonicParsing="false" text="English" toggleGroup="$g1" />
+                     </children>
+                  </Group>
                </children>
+               <padding>
+                  <Insets bottom="4.0" left="4.0" right="4.0" top="10.0" />
+               </padding>
             </VBox>
                 <Button fx:id="btnNext" mnemonicParsing="false" onAction="#clickNext" style="-fx-background-color: #4470AD;" text="%next" textFill="WHITE">
                     <font>

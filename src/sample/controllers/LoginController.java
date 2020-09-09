@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.models.UserModel;
@@ -23,6 +24,8 @@ public class LoginController {
     public TextField fieldName;
     public PasswordField fieldPassword;
     private UserModel model;
+    public RadioButton ba;
+    public RadioButton en;
 
 
     public LoginController(){
@@ -45,6 +48,9 @@ public class LoginController {
             Stage stage1 = (Stage) fieldName.getScene().getWindow();
             stage1.close();
 
+
+            if (en.isSelected()) Locale.setDefault(new Locale("en", "US"));
+            if (ba.isSelected()) Locale.setDefault(new Locale("bs", "BA"));
             Stage stage = new Stage();
             ResourceBundle bundle = ResourceBundle.getBundle("translation");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"), bundle);
