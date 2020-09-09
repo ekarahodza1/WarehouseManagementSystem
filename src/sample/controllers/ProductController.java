@@ -5,12 +5,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.dto.Product;
 import sample.dto.Type;
 import sample.dto.Warehouse;
+import sample.other.EmptyDateFieldException;
 
 import java.util.ArrayList;
 import java.util.Date;
