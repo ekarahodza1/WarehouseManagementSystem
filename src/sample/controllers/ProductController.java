@@ -117,10 +117,52 @@ public class ProductController {
             fieldPrice.getStyleClass().removeAll("fieldCorrect");
             fieldPrice.getStyleClass().add("fieldIncorrect");
             Ok = false;
-        } else {
+        } else if(amount * unitPrice != price){
+            fieldPrice.getStyleClass().removeAll("fieldCorrect");
+            fieldPrice.getStyleClass().add("fieldIncorrect");
+        }
+        else {
             fieldPrice.getStyleClass().removeAll("fieldIncorrect");
             fieldPrice.getStyleClass().add("fieldCorrect");
         }
+
+        Date date1 = null, date2 = null;
+
+        try {
+            date1 = java.sql.Date.valueOf(dateAdded.getText());
+            dateAdded.getStyleClass().removeAll("fieldIncorrect");
+            dateAdded.getStyleClass().add("fieldCorrect");
+        }
+        catch(Exception e){
+            dateAdded.getStyleClass().removeAll("fieldCorrect");
+            dateAdded.getStyleClass().add("fieldIncorrect");
+            Ok = false;
+        }
+
+        if (!expirationDate.getText().matches("")) {
+            try {
+                date2 = java.sql.Date.valueOf(dateAdded.getText());
+                if (date2.before(date1)) {
+                    expirationDate.getStyleClass().removeAll("fieldCorrect");
+                    expirationDate.getStyleClass().add("fieldIncorrect");
+                    dateAdded.getStyleClass().removeAll("fieldCorrect");
+                    dateAdded.getStyleClass().add("fieldIncorrect");
+                    Ok = false;
+                }
+                else {
+                    expirationDate.getStyleClass().removeAll("fieldIncorrect");
+                    expirationDate.getStyleClass().add("fieldCorrect");
+                    dateAdded.getStyleClass().removeAll("fieldIncorrect");
+                    dateAdded.getStyleClass().add("fieldCorrect");
+                }
+            } catch (Exception e) {
+                expirationDate.getStyleClass().removeAll("fieldCorrect");
+                expirationDate.getStyleClass().add("fieldIncorrect");
+                Ok = false;
+            }
+        }
+
+
 
 
 

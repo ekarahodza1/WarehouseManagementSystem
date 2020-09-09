@@ -30,6 +30,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"), bundle);
         primaryStage.setTitle("Warehouse management system");
         primaryStage.setScene(new Scene(root, 900, 500));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
