@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.MainController">
+<BorderPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.MainController">
     <center>
         <TableView fx:id="tableViewStorage" prefHeight="400.0" prefWidth="538.0" BorderPane.alignment="CENTER">
             <columns>
@@ -150,7 +150,7 @@
                         <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="lValue" alignment="CENTER" prefHeight="46.0" prefWidth="149.0" text="${controller.lValue}" textAlignment="CENTER" textFill="#ccdbee" textOverrun="CENTER_ELLIPSIS" underline="true">
+                  <Label fx:id="lValue" alignment="CENTER"  prefHeight="46.0" prefWidth="149.0" text="${controller.lValue}" textAlignment="CENTER" textFill="#ccdbee" textOverrun="CENTER_ELLIPSIS" underline="true">
                      <font>
                         <Font name="Verdana Bold" size="14.0" />
                      </font>

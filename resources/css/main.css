@@ -4,3 +4,7 @@
 .fieldIncorrect {
     -fx-control-inner-background: lightpink;
 }
+
+.fieldTotal{
+     -fx-word-wrap: break-word;
+}
