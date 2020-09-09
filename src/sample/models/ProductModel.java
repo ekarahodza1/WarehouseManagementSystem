@@ -51,7 +51,7 @@ public class ProductModel {
             addProduct = conn.prepareStatement("INSERT INTO product VALUES(?,?,?,?,?,?,?,?,?)");
             getID = conn.prepareStatement("SELECT MAX(id)+1 FROM product");
             getWarehouse = conn.prepareStatement("SELECT * FROM warehouse WHERE id=?");
-            addWarehouse = conn.prepareStatement("INSERT INTO warehouse VALUES(?,?)");
+            addWarehouse = conn.prepareStatement("INSERT INTO warehouse VALUES(?,?,?)");
             getAll = conn.prepareStatement("SELECT * FROM warehouse");
             getIDWarehouse = conn.prepareStatement("SELECT MAX(id)+1 FROM warehouse");
 
@@ -206,6 +206,7 @@ public class ProductModel {
 
             addWarehouse.setInt(1, id);
             addWarehouse.setString(2, warehouse.getName());
+            addWarehouse.setString(3, warehouse.getLocation());
 
             addWarehouse.executeUpdate();
 
@@ -220,7 +221,7 @@ public class ProductModel {
             getWarehouse.setInt(1, id);
             ResultSet rs = getWarehouse.executeQuery();
             if (!rs.next()) return null;
-            Warehouse warehouse = new Warehouse(rs.getInt(1), rs.getString(2));
+            Warehouse warehouse = new Warehouse(rs.getInt(1), rs.getString(2), rs.getString(3));
             return warehouse;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -233,7 +234,7 @@ public class ProductModel {
         try {
             ResultSet rs = getAll.executeQuery();
             while (rs.next()) {
-                Warehouse warehouse = new Warehouse(rs.getInt(1), rs.getString(2));
+                Warehouse warehouse = new Warehouse(rs.getInt(1), rs.getString(2), rs.getString(3));
                 result.add(warehouse);
             }
         } catch (SQLException e) {

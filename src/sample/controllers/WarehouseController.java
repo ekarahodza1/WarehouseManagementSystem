@@ -8,6 +8,7 @@ import sample.dto.Warehouse;
 
 public class WarehouseController {
     public TextField fieldName;
+    public TextField fieldLocation;
     public Warehouse warehouse;
 
     public WarehouseController() {}
@@ -40,10 +41,20 @@ public class WarehouseController {
             fieldName.getStyleClass().add("fieldCorrect");
         }
 
+        if (fieldLocation.getText().trim().isEmpty() || fieldName.getText().toString().length() <= 1) {
+            fieldLocation.getStyleClass().removeAll("fieldCorrect");
+            fieldLocation.getStyleClass().add("fieldIncorrect");
+            Ok = false;
+        } else {
+            fieldLocation.getStyleClass().removeAll("fieldIncorrect");
+            fieldLocation.getStyleClass().add("fieldCorrect");
+        }
+
         if (!Ok) return;
 
         if (warehouse == null) warehouse = new Warehouse();
         warehouse.setName(fieldName.getText());
+        warehouse.setLocation(fieldLocation.getText());
         Stage stage = (Stage) fieldName.getScene().getWindow();
         stage.close();
     }

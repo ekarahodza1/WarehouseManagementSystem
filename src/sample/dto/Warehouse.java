@@ -3,10 +3,12 @@ package sample.dto;
 public class Warehouse {
     private int id;
     private String name;
+    private String location;
 
-    public Warehouse(int id, String name) {
+    public Warehouse(int id, String name, String location) {
         this.id = id;
         this.name = name;
+        this.location = location;
     }
 
     public Warehouse() {}
@@ -25,6 +27,14 @@ public class Warehouse {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     @Override

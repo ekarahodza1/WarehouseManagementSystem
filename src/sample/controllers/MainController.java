@@ -71,7 +71,7 @@ public class MainController {
         time = new SimpleStringProperty("00:00");
         value = new SimpleStringProperty("");
         listWarehouse = FXCollections.observableArrayList(warehouseModel.getAll());
-        listWarehouse.add(0, new Warehouse(-1, "All"));
+        listWarehouse.add(0, new Warehouse(-1, "All", ""));
         ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList("All", "Clothes", "Food", "Hygiene", "Electronics", "Construction"));
         listType = FXCollections.observableArrayList(arrayList);
     }
@@ -170,7 +170,7 @@ public class MainController {
             stage.setOnHiding( event -> {
                 Warehouse warehouse = warehouseController.getWarehouse();
                 if (warehouse != null) {
-                    warehouseModel.addWarehouse(warehouse);
+                    model.addWarehouse(warehouse);
                     //listProduct.setAll(model.getProducts());
                 }
             } );

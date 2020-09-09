@@ -27,11 +27,11 @@
             <Font name="Verdana" size="12.0" />
          </font></Label>
         <TextField fx:id="fieldName" GridPane.columnIndex="1" />
-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" >
+      <TextField fx:id="fieldLocation" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <font>
             <Font name="Verdana" size="12.0" />
         </font></TextField>
-      <Label text="%location" textFill="#233c67" GridPane.rowIndex="1" >
+      <Label text="%location" textFill="#233c67" GridPane.rowIndex="1">
           <font>
               <Font name="Verdana" size="12.0" />
           </font></Label>
