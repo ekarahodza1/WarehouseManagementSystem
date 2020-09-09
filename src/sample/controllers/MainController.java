@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import sample.dto.Product;
@@ -19,6 +20,7 @@ import sample.dto.Type;
 import sample.dto.Warehouse;
 import sample.models.ProductModel;
 import sample.models.WarehouseModel;
+import sample.other.PrintReport;
 
 import java.util.*;
 
@@ -46,6 +48,7 @@ public class MainController {
     public Button btnExit;
     public ChoiceBox choiceType;
     public ChoiceBox choiceWarehouse;
+    public Button btnReport;
 
     private ProductModel model;
     private WarehouseModel warehouseModel;
@@ -333,6 +336,14 @@ public class MainController {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    public void actionReport (ActionEvent actionEvent){
+        try {
+            new PrintReport().showReport(model.getConnection());
+        } catch (JRException e1) {
+            e1.printStackTrace();
+        }
     }
 
     public void actionTypeChosen(ActionEvent actionEvent){

@@ -21,6 +21,10 @@ public class ProductModel {
         return instance;
     }
 
+    public Connection getConnection() {
+        return conn;
+    }
+
     private ProductModel() {
 
         try {

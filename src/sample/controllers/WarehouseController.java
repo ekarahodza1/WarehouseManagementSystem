@@ -11,7 +11,9 @@ public class WarehouseController {
     public TextField fieldLocation;
     public Warehouse warehouse;
 
-    public WarehouseController() {}
+    public WarehouseController() {
+
+    }
 
     @FXML
     public void initialize() {
