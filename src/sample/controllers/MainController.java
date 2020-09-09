@@ -268,17 +268,18 @@ public class MainController {
             bf.write("warehouse");
             bf.newLine();
             bf.newLine();
-            bf.write("id  | name           ");
+            bf.write("id  | name     | location      ");
             bf.newLine();
-            bf.write("------------------------");
+            bf.write("-------------------------------");
             bf.newLine();
 
             for (Warehouse w : warehouses) {
                 String s = ""; s += w.getId();
                 while (s.length() < 4) s += " "; s += "| "; s += w.getName();
+                while (s.length() < 15) s += " "; s += "| "; s += w.getLocation();
                 bf.write(s);
                 bf.newLine();
-                bf.write("------------------------");
+                bf.write("-------------------------------");
                 bf.newLine();
             }
 
