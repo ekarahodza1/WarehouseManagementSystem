@@ -236,7 +236,8 @@ public class MainController {
         products.addAll(model.getProducts());
         warehouses.addAll(warehouseModel.getAll());
 
-        String outputFilePath = "database.txt";
+        String home = System.getProperty("user.home");
+        String outputFilePath = home + "/Desktop/" + "database.txt";
 
         File file = new File(outputFilePath);
         BufferedWriter bf = null;;
