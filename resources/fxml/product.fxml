@@ -63,9 +63,9 @@
       <TextField fx:id="fieldUnitPrice" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <TextField fx:id="fieldPrice" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <ChoiceBox fx:id="choiceWarehouse" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <DatePicker fx:id="dateAdded" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <TextField fx:id="dateAdded" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
-      <DatePicker fx:id="expirationDate" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <TextField fx:id="expirationDate" GridPane.columnIndex="1" GridPane.rowIndex="7" />
       <Label text="%u_price" textFill="#233c67" GridPane.rowIndex="3">
           <font>
               <Font name="Verdana" size="12.0" />

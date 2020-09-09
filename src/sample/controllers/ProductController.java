@@ -22,8 +22,8 @@ public class ProductController {
     public TextField fieldUnitPrice;
     public TextField fieldPrice;
     public ChoiceBox<Warehouse> choiceWarehouse;
-    public DatePicker dateAdded;
-    public DatePicker expirationDate;
+    public TextField dateAdded;
+    public TextField expirationDate;
     public ObservableList<Warehouse> listWarehouse;
     public ObservableList<Type> listType;
     private Product product;
@@ -48,8 +48,8 @@ public class ProductController {
             fieldPrice.setText(Double.toString(product.getPrice()));
             choiceWarehouse.getSelectionModel().select(product.getWarehouse().getId());
             choiceType.getSelectionModel().select(product.getType());
-            dateAdded.setUserData(product.getDateAdded());
-            if (product.getExpirationDate() != null) expirationDate.setUserData(product.getExpirationDate());
+            dateAdded.setText(product.getDateAdded().toString());
+            if (product.getExpirationDate() != null) expirationDate.setText(product.getExpirationDate().toString());
         }
     }
 
@@ -133,8 +133,9 @@ public class ProductController {
         product.setPrice(price);
         product.setType(choiceType.getValue());
         product.setWarehouse(choiceWarehouse.getValue());
-        product.setDateAdded((Date) dateAdded.getUserData());
-        product.setExpirationDate((Date) dateAdded.getUserData());
+        product.setDateAdded(java.sql.Date.valueOf(dateAdded.getText()));
+        if (!expirationDate.getText().matches(""))
+        product.setExpirationDate(java.sql.Date.valueOf(expirationDate.getText()));
 
         Stage stage = (Stage) fieldName.getScene().getWindow();
         stage.close();
