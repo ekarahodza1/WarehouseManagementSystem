@@ -63,7 +63,7 @@ public class ProductController {
         stage.close();
     }
 
-    public void clickOk(ActionEvent actionEvent) {
+    public void clickOk(ActionEvent actionEvent)  {
         boolean Ok = true;
 
         if (fieldName.getText().trim().isEmpty()) {
@@ -176,8 +176,13 @@ public class ProductController {
         product.setType(choiceType.getValue());
         product.setWarehouse(choiceWarehouse.getValue());
         product.setDateAdded(java.sql.Date.valueOf(dateAdded.getText()));
-        if (!expirationDate.getText().matches(""))
-        product.setExpirationDate(java.sql.Date.valueOf(expirationDate.getText()));
+         try {
+            if (expirationDate.getText().matches("")) throw new EmptyDateFieldException("Empty field");
+            product.setExpirationDate(java.sql.Date.valueOf(expirationDate.getText()));
+        } catch (EmptyDateFieldException e) {
+            e.printStackTrace();
+        }
+
 
         Stage stage = (Stage) fieldName.getScene().getWindow();
         stage.close();
