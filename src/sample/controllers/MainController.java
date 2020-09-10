@@ -89,7 +89,6 @@ public class MainController {
         colPrice.setCellValueFactory(new PropertyValueFactory("unitPrice"));
         colPriceAll.setCellValueFactory(new PropertyValueFactory("price"));
         colStorage.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getWarehouse().getName()));
-       // colStorage.setCellValueFactory(new PropertyValueFactory("warehouse"));
         colDate.setCellValueFactory(new PropertyValueFactory("dateAdded"));
         colDateExp.setCellValueFactory(new PropertyValueFactory("expirationDate"));
         choiceType.setItems(listType);

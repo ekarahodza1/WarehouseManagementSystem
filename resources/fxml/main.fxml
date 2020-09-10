@@ -28,7 +28,7 @@
             <HBox cache="true" depthTest="ENABLE" prefHeight="33.0" prefWidth="157.0" style="-fx-background-color: #99AFD7;">
                <children>
                   <Label prefHeight="27.0" prefWidth="89.0" text="%Time_online" textFill="#233c67">
-                    
+
                      <font>
                         <Font name="Verdana" size="11.0" />
                      </font></Label>

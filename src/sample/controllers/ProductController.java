@@ -35,6 +35,10 @@ public class ProductController {
         listType = FXCollections.observableArrayList(Type.values());
     }
 
+    public ProductController(Product p) {
+        p = new Product();
+    }
+
     @FXML
     public void initialize() {
         choiceWarehouse.setItems(listWarehouse);
@@ -107,6 +111,7 @@ public class ProductController {
         }
 
 
+        fieldPrice.setText(String.valueOf(amount * unitPrice));
         double price = 0;
         try {
             price = Double.parseDouble(fieldPrice.getText());
