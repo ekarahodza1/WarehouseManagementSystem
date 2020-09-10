@@ -18,16 +18,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-//        Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
-//        primaryStage.setTitle("Warehouse management system");
-//        primaryStage.setScene(new Scene(root, 900, 500));
-//        primaryStage.setResizable(false);
-//        primaryStage.show();
-
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
-//        MainController ctrl = new MainController();
-//        loader.setController(ctrl);
-//        Parent root = loader.load();
 
         Parent root = null;
         ResourceBundle bundle = ResourceBundle.getBundle("translation");

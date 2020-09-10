@@ -68,7 +68,7 @@ public class LoginController {
                 e.printStackTrace();
             }
             stage.setTitle("Warehouse management system");
-            stage.setScene(new Scene(root, 900, 500));
+            stage.setScene(new Scene(root, 1000, 500));
             stage.setResizable(false);
             stage.show();
         }
