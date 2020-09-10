@@ -42,8 +42,15 @@ public class LoginController {
         String password = fieldPassword.getText();
         Map<String, String> map = model.getUsers();
 
-        if (map.get(username).matches(password)) {
-            //Locale.setDefault(new Locale("bs", "BA"));
+        if (fieldPassword.getText().trim().isEmpty() || fieldName.getText().trim().isEmpty()){
+            fieldName.getStyleClass().removeAll("fieldCorrect");
+            fieldName.getStyleClass().add("fieldIncorrect");
+            fieldPassword.getStyleClass().removeAll("fieldCorrect");
+            fieldPassword.getStyleClass().add("fieldIncorrect");
+            return;
+        }
+
+        else if (map.get(username).matches(password)) {
 
             Stage stage1 = (Stage) fieldName.getScene().getWindow();
             stage1.close();

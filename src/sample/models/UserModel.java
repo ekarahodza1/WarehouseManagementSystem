@@ -9,7 +9,7 @@ public class UserModel {
 
     public UserModel() {
         users.put("admin", "1234");
-        users.put("korisnik", "0000");
+        users.put("user", "0000");
     }
 
     public static UserModel getInstance() {
