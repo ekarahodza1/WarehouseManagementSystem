@@ -21,6 +21,20 @@ public class ProductModel {
         return instance;
     }
 
+    public static void removeInstance() {
+        if (instance == null) return;
+        instance.close();
+        instance = null;
+    }
+
+    public void close() {
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Connection getConnection() {
         return conn;
     }

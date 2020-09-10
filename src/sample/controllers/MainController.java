@@ -393,4 +393,10 @@ public class MainController {
         stage.close();
     }
 
+    public void resetDatabase() {
+        ProductModel.removeInstance();
+        File dbfile = new File("database.db");
+        dbfile.delete();
+        model = ProductModel.getInstance();
+    }
 }
