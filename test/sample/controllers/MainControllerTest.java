@@ -16,7 +16,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
+import sample.models.ProductModel;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
@@ -31,6 +33,9 @@ class MainControllerTest {
     public void start (Stage stage) throws Exception {
 
 
+        ProductModel.removeInstance();
+        File dbfile = new File("database.db");
+        dbfile.delete();
 
         ResourceBundle bundle = ResourceBundle.getBundle("translation");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"), bundle);

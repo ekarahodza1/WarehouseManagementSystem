@@ -73,6 +73,20 @@ public class WarehouseModel {
         }
     }
 
+    public static void removeInstance() {
+        if (instance == null) return;
+        instance.close();
+        instance = null;
+    }
+
+    public void close() {
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void addWarehouse(Warehouse warehouse){
         try {
             ResultSet rs = getID.executeQuery();

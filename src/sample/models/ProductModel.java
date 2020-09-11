@@ -184,7 +184,6 @@ public class ProductModel {
                 date = Date.valueOf(rs.getString(8));
             }
 
-   //         Warehouse w = new Warehouse(rs.getInt(7), " ");
             Warehouse w = new Warehouse();
             w = getWarehouse(rs.getInt(7));
 
