@@ -1,0 +1,43 @@
+<html><head>
+  <SCRIPT src="http://java.com/js/dtjava.js"></SCRIPT>
+<script>
+    function launchApplication(jnlpfile) {
+        dtjava.launch(            {
+                url : 'rpr_projekat.jnlp'
+            },
+            {
+                javafx : '8.0+'
+            },
+            {}
+        );
+        return false;
+    }
+</script>
+
+<script>
+    function javafxEmbedrpr_projekat_id() {
+        dtjava.embed(
+            {
+                id : 'rpr_projekat_id',
+                url : 'rpr_projekat.jnlp',
+                placeholder : 'javafx-app-placeholder',
+                width : '1000',
+                height : '500'
+            },
+            {
+                javafx : '8.0+'
+            },
+            {}
+        );
+    }
+    <!-- Embed FX application into web page once page is loaded -->
+    dtjava.addOnloadCallback(javafxEmbedrpr_projekat_id);
+</script>
+
+</head><body>
+<h2>Test page for <b>rpr-projekat</b></h2>
+  <b>Webstart:</b> <a href='rpr_projekat.jnlp' onclick="return launchApplication('rpr_projekat.jnlp');">click to launch this app as webstart</a><br><hr><br>
+
+  <!-- Applet will be inserted here -->
+  <div id='javafx-app-placeholder'></div>
+</body></html>
