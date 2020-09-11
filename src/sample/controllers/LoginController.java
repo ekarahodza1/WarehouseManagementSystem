@@ -34,6 +34,7 @@ public class LoginController {
 
     @FXML
     public void initialize(){
+        en.setSelected(true);
 
     }
 
