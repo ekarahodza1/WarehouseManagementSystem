@@ -1,6 +1,6 @@
 package sample.models;
 
-import org.junit.jupiter.api.Order;
+
 import org.junit.jupiter.api.Test;
 import sample.dto.Product;
 import sample.dto.Type;
@@ -79,7 +79,6 @@ class ProductModelTest {
     }
 
     @Test
-    @Order(1)
     void getProduct() {
         ProductModel.removeInstance();
         File dbfile = new File("database.db");
@@ -91,7 +90,6 @@ class ProductModelTest {
     }
 
     @Test
-    @Order(2)
     void getProducts() {
         ProductModel.removeInstance();
         File dbfile = new File("database.db");

@@ -10,7 +10,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
@@ -55,14 +54,14 @@ class MainControllerTest {
     }
 
     @Test
-    @Order(1)
+
     public void testTableView(FxRobot robot) {
         TableView tableViewProducts = robot.lookup("#tableViewStorage").queryAs(TableView.class);
         assertEquals(12, tableViewProducts.getItems().size());
     }
 
     @Test
-    @Order(2)
+
     public void testDeleteProduct(FxRobot robot) {
 
         robot.clickOn("Oranges");
@@ -80,7 +79,7 @@ class MainControllerTest {
     }
 
     @Test
-    @Order(3)
+
     public void testFilter(FxRobot robot){
         robot.clickOn("#choiceType");
         robot.type(KeyCode.DOWN);

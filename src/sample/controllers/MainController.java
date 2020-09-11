@@ -173,7 +173,6 @@ public class MainController {
                 Warehouse warehouse = warehouseController.getWarehouse();
                 if (warehouse != null) {
                     model.addWarehouse(warehouse);
-                    //listProduct.setAll(model.getProducts());
                 }
             } );
         } catch (IOException e) {
